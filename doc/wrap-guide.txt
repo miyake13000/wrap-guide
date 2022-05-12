@@ -1,0 +1,12 @@
+------------------------------------------------------------------------------
+COMMANDS                                             *WrapGuide-commands*
+
+:WrapGuideEnable                                     *:WrapGuideEnable*
+    Display Guide
+
+:WrapGuideDisable                                    *:WrapGuideDisable*
+    Disable this plugin
+
+:WrapGuideToggle                                     *:WrapGuideToggle*
+    Toggle this plugin
+
