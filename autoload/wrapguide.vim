@@ -19,9 +19,17 @@ lua <<EOT
 function _G.wrap_guide_refresh()
     local bnr = vim.fn.bufnr('%')
     local ns_id = vim.g.wrap_guide_ns
-    local wrap_col = vim.api.nvim_get_option('textwidth')
     local line_len = vim.fn.line('$')
     local col_num = 0
+
+    local wrap_col = vim.g.wrap_guide_col
+    if not(wrap_col) then
+        wrap_col = vim.api.nvim_get_option('textwidth')
+    end
+
+    if wrap_col == 0 then
+        return
+    end
 
     local opts = {
         priority = 1000,
@@ -33,7 +41,7 @@ function _G.wrap_guide_refresh()
 
     local line_num = 0
     for line = 0, ( line_len-1 ) do
-        if vim.fn.virtcol({ line+1, '$' }) <= ( wrap_col + 1 ) then
+        if vim.fn.virtcol({ line+1, '$' }) <= ( wrap_col ) then
             local mark_id = vim.api.nvim_buf_set_extmark( bnr, ns_id, line, col_num, opts )
         end
     end
